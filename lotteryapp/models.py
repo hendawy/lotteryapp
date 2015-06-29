@@ -104,6 +104,10 @@ class LotteryParticipant(models.Model):
         if self.entry_code is None or self.entry_code == '':
             self.entry_code = random_base36_string(size=10)
 
+        # email to lowercase
+        if self.email is not None and self.email != '':
+            self.email = self.email.lower()
+
         super(LotteryParticipant, self).save(*args, **kwargs)
 
     def validate_unique(self, exclude=None, *args, **kwargs):
@@ -111,7 +115,7 @@ class LotteryParticipant(models.Model):
         email already registerd for lottery or not
         """
         participants = LotteryParticipant.objects.filter(
-            email=self.email, lottery=self.lottery)
+            email=self.email.lower(), lottery=self.lottery)
         if participants.count() > 0 and self.id is None:
             raise ValidationError({
                 'email': ['Email already exists for this lottery']})
