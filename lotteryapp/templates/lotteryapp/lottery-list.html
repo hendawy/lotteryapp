@@ -1,0 +1,26 @@
+{% extends "lotteryapp/base.html" %}
+{% block title %}All Lotteries{% endblock %}
+{% block header %}
+<div class="row">
+    <div class="page-header">
+        <h2>All Lotteries<br/></h2>
+    </div>
+    <h4></h4>
+</div>
+<div class="container">
+    <h3>Inactive Lotteries</h3>
+    {% for lottery in inactive_lotteries %}
+    <div class="row">
+        <h4><a href="{{ lottery.get_url }}">{{ lottery.title }}</a></h4>
+    </div>
+    {% endfor %}
+</div>
+<div class="container">
+    <h3>Active Lotteries</h3>
+    {% for lottery in active_lotteries %}
+    <div class="row">
+        <h4><a href="{{ lottery.get_url }}">{{ lottery.title }}</a></h4>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

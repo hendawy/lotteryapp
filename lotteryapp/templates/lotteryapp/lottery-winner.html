@@ -1,0 +1,24 @@
+{% extends "lotteryapp/base.html" %}
+{% block title %}Winner of Lottery - {{ participant.lottery.title }}{% endblock %}
+{% block header %}
+<div class="row">
+    <div class="page-header">
+        <h2>
+            Winner - Lottery: {{ winner.lottery.title }}<br/>
+        </h2>
+        <p><b>Lottery Deadline: {{ lottery_deadline }}</b></p>
+        <small></small>
+    </div>
+    <h4></h4>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        {% if winner == None %}
+        <h3>Winner of lottery <b>{{ winner.lottery.title }}</b> has not been selected yet</h3>
+        {% else %}
+        <h3>Winner's Participation Code is: <b>{{ winner.entry_code }}</b></h3>
+        <h3>Congratulations <b>{{ winner.full_name }}</b>! You have won the lottery!</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
