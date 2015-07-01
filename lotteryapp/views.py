@@ -63,7 +63,7 @@ class Registration(View):
         context = self.get_context_data()
         form = self.form_class(request.POST)
         context['form'] = form
-        if form.is_valid() and context['lottery'].is_active:
+        if form.is_valid() and context['lottery'].is_active():
             result = form.save()
             url = urlresolvers.reverse(
                 'lotteryapp:participant_code', args=[result.hash_key])
